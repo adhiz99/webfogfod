@@ -2,7 +2,7 @@ const errorHandler = (error, req, res, next) => {
 	
 	console.log(error)	
 
-	let code = error.code || 500
+	let code = error.status || 500
 	let message = error.message
 	let detail = null
 	let errArr = error.details
@@ -15,7 +15,7 @@ const errorHandler = (error, req, res, next) => {
 	}
 
 	return res.status(+code || 500).json({
-		code: 0,
+		code: code,
 		message: message,
 		detail,
 		errArr
