@@ -1,0 +1,12 @@
+/node_modules
+/dist
+/upload
+/storage
+/logs
+*local
+.env
+files
+yarn-error.log
+
+package-lock.json
+yarn.lock
