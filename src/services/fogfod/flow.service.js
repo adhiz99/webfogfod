@@ -28,7 +28,6 @@ exports.get_tfog_h_int = async (payload) => {
           ${batas}
           ;
           `
-          console.log(query, 'azz');
           
         const data = await kudu.query(query);
         
