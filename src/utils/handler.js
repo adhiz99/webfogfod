@@ -29,7 +29,7 @@ function handler(fn, schema) {
 
 			if(response){
 				res.status(response.status ?? 200).json({
-					code: 1,
+					code: req.method == 'POST' ? 201 : 200,
 					message: "Success",
 					...response
 				});
