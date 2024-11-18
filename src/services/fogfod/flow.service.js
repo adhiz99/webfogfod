@@ -6,7 +6,7 @@ exports.get_tfog_h_int = async (payload) => {
   let batas = `LIMIT 25`
   let periode = ``
 
-  if (typeof limit === 'number') {
+  if (limit) {
     batas = `LIMIT ${limit}`
   }
 
@@ -28,6 +28,8 @@ exports.get_tfog_h_int = async (payload) => {
           ${batas}
           ;
           `
+          console.log(query, 'azz');
+          
         const data = await kudu.query(query);
         
         return { data: data };
@@ -43,11 +45,11 @@ exports.get_tfog_d_init = async (payload) => {
     let batas = `LIMIT 25`
 
     let id_ppkbs = ``
-    if (id_ppkbs) {
+    if (id_ppkb) {
       id_ppkbs = `AND id_ppkb = ${id_ppkb}`
     }
 
-    if (typeof limit === 'number') {
+    if (limit) {
       batas = `LIMIT ${limit}`
     }
 
@@ -74,11 +76,11 @@ exports.get_tfod_int = async (payload) => {
   let batas = `LIMIT 25`
 
   let id_pkks = ``
-  if (id_pkks) {
+  if (id_pkk) {
     id_pkks = `AND id_pkk = ${id_pkk}`
   }
 
-  if (typeof limit === 'number') {
+  if (limit) {
     batas = `LIMIT ${limit}`
   }
 
