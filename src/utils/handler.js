@@ -28,7 +28,7 @@ function handler(fn, schema) {
 			const response = await fn(req, res, next);
 
 			if(response){
-				res.status(response.status ?? 200).json({
+				res.status(response?.status ?? 200).json({
 					code: req.method == 'POST' ? 201 : 200,
 					message: "Success",
 					...response
