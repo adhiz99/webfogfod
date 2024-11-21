@@ -34,7 +34,6 @@ exports.get_tfog_h_int = async (payload) => {
           ${offsets}
           ;
           `
-          console.log(query);
           
         const data = await kudu.query(query);
         
