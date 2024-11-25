@@ -29,7 +29,7 @@ exports.get_tfog_h_int = async (payload) => {
               LOWER(vessel_name)  LIKE LOWER('%${keyword}%') OR
               LOWER(name_branch) LIKE LOWER('%${keyword}%') OR
               LOWER(name_organization) LIKE LOWER('%${keyword}%'))
-              ${periode} ORDER BY no_pkk_inaportnet DESC
+              ${periode} ORDER BY id_pkk DESC
           ${batas}
           ${offsets}
           ;
