@@ -22,7 +22,7 @@ exports.get_tfog_h_int = async (payload) => {
     try {
         const kudu = await connectKudu();
         const query = `
-          SELECT * FROM t3_mntrfog_prd.t_fog_h_int
+          SELECT * FROM t3_mntrfog${process.env.DATABASE}.t_fog_h_int
           WHERE 1=1 AND
               (LOWER(no_pkk_inaportnet) LIKE LOWER('%${keyword}%') OR
               LOWER(no_pkk) LIKE LOWER('%${keyword}%') OR
@@ -66,7 +66,7 @@ exports.get_tfog_d_init = async (payload) => {
     try {
         const kudu = await connectKudu();
         const query = `
-          SELECT * FROM t3_mntrfog_prd.t_fog_d_int
+          SELECT * FROM t3_mntrfog${process.env.DATABASE}.t_fog_d_int
           WHERE 1=1 ${id_ppkbs} ORDER BY id_ppkb DESC
           ${batas}
           ${offsets}
@@ -103,7 +103,7 @@ exports.get_tfod_int = async (payload) => {
     try {
         const kudu = await connectKudu();
         const query = `
-          SELECT * FROM t3_mntrfog_prd.t_fod_int
+          SELECT * FROM t3_mntrfog${process.env.DATABASE}.t_fod_int
           WHERE 1=1
               AND LOWER(no_pmh) LIKE LOWER('%${no_pmh}%')
               ${id_pkks} ORDER BY id_pkk DESC
