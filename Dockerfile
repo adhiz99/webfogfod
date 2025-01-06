@@ -44,4 +44,4 @@ RUN npm i pm2 -g
 
 RUN git pull https://adhiz99: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@github.com/bimosptr1/webfogfod.git
 
-CMD ["pm2-runtime","ecosystem.config.js", "--only webfogfod-dev"]
+CMD ["pm2-runtime", "ecosystem.config.js", "--only webfogfod-dev"]
