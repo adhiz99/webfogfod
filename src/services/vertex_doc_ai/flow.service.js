@@ -2,21 +2,13 @@ const connectKudu = require("../../config/database.config");
 
 exports.get_summary_list = async (payload) => {
   const {
-<<<<<<< HEAD
     batas = '',
-=======
-    limit = '',
->>>>>>> 798d6f815c8449775518697b436fe842cef56c75
     offset = '',
     klasifikasi = '',
     nomor_dokumen = ''
   } = payload
 
-<<<<<<< HEAD
   let filter_limit = `LIMIT 25`
-=======
-  let filter_limit = `LIMIT 15`
->>>>>>> 798d6f815c8449775518697b436fe842cef56c75
   let filter_offset = `OFFSET 0`
   let filter_nomor_dokumen = ``
   let cte = `
@@ -29,13 +21,8 @@ exports.get_summary_list = async (payload) => {
     SELECT nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_padi
   `
 
-<<<<<<< HEAD
   if (batas) {
     filter_limit = `LIMIT ${batas}`
-=======
-  if (limit) {
-    filter_limit = `LIMIT ${limit}`
->>>>>>> 798d6f815c8449775518697b436fe842cef56c75
   }
 
   if (offset) {
