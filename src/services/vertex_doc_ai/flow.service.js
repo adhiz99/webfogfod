@@ -30,7 +30,7 @@ exports.get_summary_list = async (payload) => {
   }
 
   if (klasifikasi) {
-    if (klasifikasi=='PADI UMKM') {
+    if (klasifikasi.toLowerCase()=='padi umkm') {
       cte = `
         SELECT nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_padi
       `
