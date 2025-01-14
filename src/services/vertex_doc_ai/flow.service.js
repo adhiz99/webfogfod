@@ -12,13 +12,13 @@ exports.get_summary_list = async (payload) => {
   let filter_offset = `OFFSET 0`
   let filter_nomor_dokumen = ``
   let cte = `
-    SELECT nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_pajak
+    SELECT CAST(nomor_dokumen AS STRING) AS nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_pajak
     union all
-    SELECT nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_konsesi
+    SELECT CAST(nomor_dokumen AS STRING) AS nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_konsesi
     union all
-    SELECT nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_pnbp
+    SELECT CAST(nomor_dokumen AS STRING) AS nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_pnbp
     union all
-    SELECT nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_padi
+    SELECT CAST(nomor_dokumen AS STRING) AS nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_padi
   `
 
   if (batas) {
@@ -32,11 +32,11 @@ exports.get_summary_list = async (payload) => {
   if (klasifikasi) {
     if (klasifikasi.toLowerCase()=='padi umkm') {
       cte = `
-        SELECT nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_padi
+        SELECT CAST(nomor_dokumen AS STRING) AS nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_padi
       `
     } else if (['pnbp', 'konsesi', 'pajak'].includes(klasifikasi.toLowerCase())) {
       cte = `
-        SELECT nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_${klasifikasi}
+        SELECT CAST(nomor_dokumen AS STRING) AS nomor_dokumen, ertim as tanggal_masuk, doc_classification as klasifikasi, rekomendasi, link_pfiles, link_report FROM t3_dashssc_dev.t_doc_webpooling_${klasifikasi}
       `
     } else {
       return { data: null }
@@ -44,7 +44,7 @@ exports.get_summary_list = async (payload) => {
   }
 
   if (nomor_dokumen) {
-    filter_nomor_dokumen = `AND nomor_dokumen = ${nomor_dokumen}`
+    filter_nomor_dokumen = `AND nomor_dokumen LIKE '%${nomor_dokumen}%'`
   }
 
     try {
@@ -63,6 +63,9 @@ exports.get_summary_list = async (payload) => {
           ;
         `
         const data = await kudu.query(query);
+
+        console.log(data, 'zz');
+        
 
         const dataWithParsedLinks = data.map(item => {
             // Modify the link_pfiles attribute
