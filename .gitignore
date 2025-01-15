@@ -5,8 +5,12 @@
 /logs
 *local
 .env
+.env.*
 files
 yarn-error.log
 
 package-lock.json
 yarn.lock
+
+
+*.pem
