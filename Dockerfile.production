@@ -32,7 +32,7 @@ ADD pelindo_dlake.pem /etc/
 
 WORKDIR /home/ubuntu/
 
-RUN git clone  https://adhiz99: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@github.com/bimosptr1/webfogfod.git
+RUN git clone  https://adhiz99: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@github.com/bimosptr1/webfogfod.git
 
 WORKDIR /home/ubuntu/webfogfod/
 
@@ -42,6 +42,6 @@ RUN npm i
 
 RUN npm i pm2 -g
 
-RUN git pull https://adhiz99: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@github.com/bimosptr1/webfogfod.git
+RUN git pull https://adhiz99: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@github.com/bimosptr1/webfogfod.git
 
 CMD ["pm2-runtime","ecosystem.config.js", "--only webfogfod-prod"]
