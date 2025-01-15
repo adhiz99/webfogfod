@@ -63,10 +63,7 @@ exports.get_summary_list = async (payload) => {
           ;
         `
         const data = await kudu.query(query);
-
-        console.log(data, 'zz');
         
-
         const dataWithParsedLinks = data.map(item => {
             // Modify the link_pfiles attribute
             return {
