@@ -12,7 +12,7 @@ module.exports = {
       name: 'webfogfod-prod',
       script: './src/index.js',
       env: {
-        NODE_ENV: 'development', // Tambahan variabel lingkungan
+        NODE_ENV: 'production', // Tambahan variabel lingkungan
       },
       env_file: '.env.production',
     },
