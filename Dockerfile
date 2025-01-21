@@ -1,8 +1,5 @@
 FROM ubuntu:latest
 
-#ENV http_proxy http://10.88.49.94:3128
-#ENV https_proxy http://10.88.49.94:3128
-
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install wget -y
@@ -32,8 +29,6 @@ ADD pelindo_dlake.pem /etc/
 
 WORKDIR /home/ubuntu/
 
-RUN git clone  https://adhiz99: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@github.com/bimosptr1/webfogfod.git
-
 WORKDIR /home/ubuntu/webfogfod/
 
 COPY .env.local /home/ubuntu/webfogfod/
@@ -42,6 +37,7 @@ RUN npm i
 
 RUN npm i pm2 -g
 
-RUN git pull https://adhiz99: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@github.com/bimosptr1/webfogfod.git
+ENV http_proxy=
+ENV https_proxy=
 
 CMD ["pm2-runtime", "ecosystem.config.js", "--only=webfogfod-dev"]
