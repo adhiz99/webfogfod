@@ -1,5 +1,8 @@
 FROM ubuntu:latest
 
+ENV http_proxy http://10.88.49.94:3128
+ENV https_proxy http://10.88.49.94:3128
+
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install wget -y
