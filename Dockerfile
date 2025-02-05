@@ -34,7 +34,7 @@ WORKDIR /home/ubuntu/
 
 WORKDIR /home/ubuntu/webfogfod/
 
-COPY .env.local /home/ubuntu/webfogfod/
+COPY . /home/ubuntu/webfogfod/
 
 RUN npm i
 
